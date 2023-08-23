@@ -7,7 +7,7 @@ const auth = require('../middlewares/auth');
 const regex = require('../utils/constants');
 
 router.use('/users', auth, require('./users'));
-router.use('/movies', auth, require('./movies'));
+router.use('/cards', auth, require('./movies'));
 
 router.get('/crash-test', () => {
   setTimeout(() => {
@@ -29,12 +29,11 @@ router.post(
   '/signup',
   celebrate({
     body: Joi.object().keys({
-      name: Joi.string().min(2).max(30),
       email: Joi.string().required().email(),
       password: Joi.string().required().min(6),
-
-      // about: Joi.string().min(2).max(30),
-      // avatar: Joi.string().pattern(regex),
+      name: Joi.string().min(2).max(30),
+      about: Joi.string().min(2).max(30),
+      avatar: Joi.string().pattern(regex),
     }),
   }),
   createUser,
