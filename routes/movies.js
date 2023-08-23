@@ -1,17 +1,15 @@
-const router = require('express').Router();
-const { celebrate, Joi } = require('celebrate');
+const router = require("express").Router();
+const { celebrate, Joi } = require("celebrate");
 const {
   getMovies,
   createMovie,
   deleteMovie,
-  // likeCard,
-  // dislikeCard,
-} = require('../controllers/movies');
-const regex = require('../utils/constants');
+} = require("../controllers/movies");
+const regex = require("../utils/constants");
 
-router.get('/', getMovies);
+router.get("/", getMovies);
 router.post(
-  '/',
+  "/",
   celebrate({
     body: Joi.object().keys({
       country: Joi.string().required().min(2).max(30),
@@ -22,42 +20,21 @@ router.post(
       image: Joi.string().required().pattern(regex),
       trailerLink: Joi.string().required().pattern(regex),
       thumbnail: Joi.string().required().pattern(regex),
-      owner: ,
       movieId: Joi.number().required(),
       nameRU: Joi.string().required().min(2).max(30),
       nameEN: Joi.string().required().min(2).max(30),
     }),
   }),
-  createMovie,
+  createMovie
 );
 router.delete(
-  '/:movieId',
+  "/:movieId",
   celebrate({
     params: Joi.object().keys({
-      movieId: Joi.string().length().hex(),
-      // movieId: Joi.string().length(24).hex().required(),
+      movieId: Joi.string().length(24).hex(),
     }),
   }),
-  deleteMovie,
+  deleteMovie
 );
-// router.put(
-//   '/:cardId/likes',
-//   celebrate({
-//     params: Joi.object().keys({
-//       movieId: Joi.string().length().hex(),
-//       // movieId: Joi.string().length(24).hex().required(),
-//     }),
-//   }),
-//   likeCard,
-// );
-// router.delete(
-//   '/:cardId/likes',
-//   celebrate({
-//     params: Joi.object().keys({
-//       cardId: Joi.string().length(24).hex().required(),
-//     }),
-//   }),
-//   dislikeCard,
-// );
 
 module.exports = router;
