@@ -1,15 +1,15 @@
-const router = require("express").Router();
-const { celebrate, Joi } = require("celebrate");
+const router = require('express').Router();
+const { celebrate, Joi } = require('celebrate');
 const {
   getMovies,
   createMovie,
   deleteMovie,
-} = require("../controllers/movies");
-const regex = require("../utils/constants");
+} = require('../controllers/movies');
+const regex = require('../utils/constants');
 
-router.get("/", getMovies);
+router.get('/', getMovies);
 router.post(
-  "/",
+  '/',
   celebrate({
     body: Joi.object().keys({
       country: Joi.string().required().min(2).max(30),
@@ -25,16 +25,16 @@ router.post(
       nameEN: Joi.string().required().min(2).max(30),
     }),
   }),
-  createMovie
+  createMovie,
 );
 router.delete(
-  "/:movieId",
+  '/:movieId',
   celebrate({
     params: Joi.object().keys({
-      movieId: Joi.string().length(24).hex(),
+      movieId: Joi.string().length(24).hex().required(),
     }),
   }),
-  deleteMovie
+  deleteMovie,
 );
 
 module.exports = router;
