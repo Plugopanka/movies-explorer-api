@@ -58,7 +58,6 @@ module.exports.deleteMovie = (req, res, next) => {
     .select('+owner')
     .orFail(() => new NotFoundError('Карточка с указанным _id не найдена'))
     .then((movie) => {
-      // eslint-disable-line
       if (String(movie.owner) !== String(req.user._id)) {
         return next(new ForbiddenError('Нет доступа для удаления карточки'));
       }
