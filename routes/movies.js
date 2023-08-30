@@ -5,7 +5,7 @@ const {
   createMovie,
   deleteMovie,
 } = require('../controllers/movies');
-const regex = require('../utils/constants');
+const { regex } = require('../utils/constants');
 
 router.get('/', getMovies);
 router.post(

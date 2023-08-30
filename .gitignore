@@ -1,5 +1,4 @@
-token.env
-process.env
+.env
 
 # Logs
 logs

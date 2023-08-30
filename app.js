@@ -10,7 +10,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { limiter } = require('./middlewares/limiter');
 const { ERROR_ON_SERVER } = require('./errors/errors');
 
-const { PORT = 4000, BASE_ADDRESS = 'mongodb://0.0.0.0:27017/bitfilmsdb' } = process.env;
+const { PORT = 4000, BASE_ADDRESS } = process.env;
 
 const app = express();
 
