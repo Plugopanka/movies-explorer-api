@@ -9,8 +9,9 @@ require('dotenv').config();
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { limiter } = require('./middlewares/limiter');
 const { ERROR_ON_SERVER } = require('./errors/errors');
+const { baseUrl } = require('./utils/constants');
 
-const { PORT = 4000, BASE_ADDRESS } = process.env;
+const { PORT = 4000, BASE_ADDRESS, NODE_ENV } = process.env;
 
 const app = express();
 
@@ -23,7 +24,7 @@ app.use(
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-mongoose.connect(BASE_ADDRESS, {
+mongoose.connect(NODE_ENV === 'production' ? BASE_ADDRESS : baseUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
