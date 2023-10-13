@@ -17,7 +17,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: ['http://localhost:3000', 'https://plugopanka.nomoredomainsicu.ru'],
+    origin: ['http://localhost:3006', 'https://plugopanka.nomoredomainsicu.ru'],
   }),
 );
 
@@ -33,7 +33,7 @@ app.use(requestLogger);
 
 app.use(helmet());
 
-app.use(limiter);
+// app.use(limiter);
 
 app.use(require('./routes/index'));
 

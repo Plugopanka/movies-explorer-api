@@ -11,7 +11,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
   },
   duration: {
-    type: String,
+    type: Number,
     required: true,
   },
   year: {
@@ -40,7 +40,6 @@ const movieSchema = new mongoose.Schema({
   },
   thumbnail: {
     type: String,
-    required: true,
     validate: {
       validator: (l) => validator.isURL(l),
       message: 'Передана некорректная ссылка',
@@ -55,7 +54,6 @@ const movieSchema = new mongoose.Schema({
   movieId: {
     type: Number,
     required: true,
-    // ref: 'movie',
   },
   nameRU: {
     type: String,
